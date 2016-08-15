@@ -78,7 +78,7 @@ public class ZookeeperRegistryCenter implements CoordinatorRegistryCenter {
         Builder builder = CuratorFrameworkFactory.builder()
                 .connectString(zkConfig.getServerLists())
                 .retryPolicy(new ExponentialBackoffRetry(zkConfig.getBaseSleepTimeMilliseconds(), zkConfig.getMaxRetries(), zkConfig.getMaxSleepTimeMilliseconds()))
-                .namespace(zkConfig.getNamespace());
+                .namespace("elastic-job/" + zkConfig.getNamespace());
         if (0 != zkConfig.getSessionTimeoutMilliseconds()) {
             builder.sessionTimeoutMs(zkConfig.getSessionTimeoutMilliseconds());
         }
