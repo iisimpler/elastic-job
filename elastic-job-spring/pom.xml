@@ -5,7 +5,7 @@
         <artifactId>elastic-job</artifactId>
         <version>1.1.1</version>
     </parent>
-    <artifactId>elastic-job-spring</artifactId>
+    <artifactId>jimu-elastic-job-spring</artifactId>
     <name>${project.artifactId}</name>
     
     <dependencies>
