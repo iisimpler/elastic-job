@@ -63,7 +63,9 @@ public final class ConfigurationNode {
     static final String MONITOR_PORT = ROOT + "/monitorPort";
 
     static final String SCRIPT_COMMAND_LINE = ROOT + "/scriptCommandLine";
-    
+
+    static final String DISABLED = ROOT + "/disabled";
+
     private final JobNodePath jobNodePath;
     
     public ConfigurationNode(final String jobName) {
@@ -108,5 +110,13 @@ public final class ConfigurationNode {
      */
     public boolean isCronPath(final String path) {
         return jobNodePath.getFullPath(CRON).equals(path);
+    }
+
+    /**
+     * 获取是否失效路径
+     *
+     */
+    public static String getDisabledPath() {
+        return DISABLED;
     }
 }

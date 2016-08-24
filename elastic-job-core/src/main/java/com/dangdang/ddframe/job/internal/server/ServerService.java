@@ -18,6 +18,7 @@
 package com.dangdang.ddframe.job.internal.server;
 
 import com.dangdang.ddframe.job.api.config.JobConfiguration;
+import com.dangdang.ddframe.job.internal.config.ConfigurationNode;
 import com.dangdang.ddframe.job.internal.env.LocalHostService;
 import com.dangdang.ddframe.job.internal.storage.JobNodeStorage;
 import com.dangdang.ddframe.reg.base.CoordinatorRegistryCenter;
@@ -55,7 +56,7 @@ public class ServerService {
      */
     public void persistServerOnline() {
         jobNodeStorage.fillJobNodeIfNullOrOverwrite(ServerNode.getHostNameNode(localHostService.getIp()), localHostService.getHostName());
-        persistDisabled();
+        persistDisabled2();
         jobNodeStorage.fillEphemeralJobNode(ServerNode.getStatusNode(localHostService.getIp()), ServerStatus.READY);
         jobNodeStorage.removeJobNodeIfExisted(ServerNode.getShutdownNode(localHostService.getIp()));
     }
@@ -65,6 +66,14 @@ public class ServerService {
             return;
         }
         if (jobNodeStorage.getJobConfiguration().isDisabled()) {
+            jobNodeStorage.fillJobNodeIfNullOrOverwrite(ServerNode.getDisabledNode(localHostService.getIp()), "");
+        } else {
+            jobNodeStorage.removeJobNodeIfExisted(ServerNode.getDisabledNode(localHostService.getIp()));
+        }
+    }
+
+    private void persistDisabled2() {
+        if (jobNodeStorage.isJobNodeExisted(ConfigurationNode.getDisabledPath())) {
             jobNodeStorage.fillJobNodeIfNullOrOverwrite(ServerNode.getDisabledNode(localHostService.getIp()), "");
         } else {
             jobNodeStorage.removeJobNodeIfExisted(ServerNode.getDisabledNode(localHostService.getIp()));
