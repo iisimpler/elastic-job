@@ -104,4 +104,12 @@ public final class ExecutionNode {
     private boolean isRunningItemPath(final String path) {
         return path.startsWith(jobNodePath.getFullPath(ROOT)) && path.endsWith(RUNNING_APPENDIX);
     }
+
+    public String getExecutionCompletedPath(String item) {
+        return jobNodePath.getFullPath(String.format(COMPLETED, item));
+    }
+
+    public String getExecutionCompletedTimePath(String item) {
+        return jobNodePath.getFullPath(String.format(LAST_COMPLETE_TIME, item));
+    }
 }
