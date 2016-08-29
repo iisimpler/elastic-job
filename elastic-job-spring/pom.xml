@@ -56,4 +56,17 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>jmb-release</id>
+            <name>jimubox release repository</name>
+            <url>http://maven.jimubox.com:8080/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>jmb-snapshot</id>
+            <name>jimubox snapshot repository</name>
+            <url>http://maven.jimubox.com:8080/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>

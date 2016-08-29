@@ -112,4 +112,8 @@ public final class ExecutionNode {
     public String getExecutionCompletedTimePath(String item) {
         return jobNodePath.getFullPath(String.format(LAST_COMPLETE_TIME, item));
     }
+
+    public String getExecutionItemPath(String item) {
+        return jobNodePath.getFullPath(String.format(ROOT + "/%s", item));
+    }
 }
