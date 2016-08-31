@@ -56,7 +56,7 @@ public class ServerService {
      */
     public void persistServerOnline() {
         jobNodeStorage.fillJobNodeIfNullOrOverwrite(ServerNode.getHostNameNode(localHostService.getIp()), localHostService.getHostName());
-        jobNodeStorage.fillJobNodeIfNullOrOverwrite(ServerNode.getEnvNameNode(localHostService.getIp()), localHostService.getSystemEnv(jobNodeStorage.getJobConfiguration().getJobParameter()));
+        jobNodeStorage.fillJobNodeIfNullOrOverwrite(ServerNode.getEnvNameNode(localHostService.getIp()), localHostService.getSystemEnv("ENV_NAME"));
         persistDisabled2();
         jobNodeStorage.fillEphemeralJobNode(ServerNode.getStatusNode(localHostService.getIp()), ServerStatus.READY);
         jobNodeStorage.removeJobNodeIfExisted(ServerNode.getShutdownNode(localHostService.getIp()));
