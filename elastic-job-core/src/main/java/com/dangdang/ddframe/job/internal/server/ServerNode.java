@@ -33,7 +33,9 @@ public class ServerNode {
     public static final String ROOT = "servers";
     
     static final String HOST_NAME = ROOT + "/%s/hostName";
-    
+
+    static final String ENV_NAME = ROOT + "/%s/envName";
+
     static final String STATUS_APPENDIX = "status";
     
     static final String STATUS = ROOT + "/%s/" + STATUS_APPENDIX;
@@ -66,6 +68,10 @@ public class ServerNode {
     
     static String getHostNameNode(final String ip) {
         return String.format(HOST_NAME, ip);
+    }
+
+    static String getEnvNameNode(final String ip) {
+        return String.format(ENV_NAME, ip);
     }
     
     static String getStatusNode(final String ip) {

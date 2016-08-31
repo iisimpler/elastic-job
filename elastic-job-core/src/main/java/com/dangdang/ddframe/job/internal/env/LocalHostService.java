@@ -104,4 +104,9 @@ public class LocalHostService {
         }
         return result;
     }
+
+    public String getSystemEnv(String key){
+        String value = System.getenv(key);
+        return value == null ? "" : value;
+    }
 }
