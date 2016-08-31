@@ -7,7 +7,7 @@
     </parent>
     <artifactId>jimu-elastic-job-core</artifactId>
     <name>${project.artifactId}</name>
-    <version>1.1.2</version>
+    <version>1.1.2-SNAPSHOT</version>
     
     <dependencies>
         <dependency>
