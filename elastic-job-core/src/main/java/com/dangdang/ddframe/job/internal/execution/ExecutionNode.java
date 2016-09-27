@@ -116,4 +116,12 @@ public final class ExecutionNode {
     public String getExecutionItemPath(String item) {
         return jobNodePath.getFullPath(String.format(ROOT + "/%s", item));
     }
+
+    public static String getIPNode(final int item){
+        return String.format(ROOT + "/%s/ip", item);
+    }
+
+    public static String getSystemEnvNode(final int item){
+        return String.format(ROOT + "/%s/systemEnv", item);
+    }
 }

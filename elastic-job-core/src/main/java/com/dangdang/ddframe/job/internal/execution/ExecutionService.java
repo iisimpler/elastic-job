@@ -21,6 +21,7 @@ import com.dangdang.ddframe.job.api.config.JobConfiguration;
 import com.dangdang.ddframe.job.api.JobExecutionMultipleShardingContext;
 import com.dangdang.ddframe.job.internal.config.ConfigurationService;
 import com.dangdang.ddframe.job.internal.election.LeaderElectionService;
+import com.dangdang.ddframe.job.internal.env.LocalHostService;
 import com.dangdang.ddframe.job.internal.schedule.JobRegistry;
 import com.dangdang.ddframe.job.internal.schedule.JobScheduleController;
 import com.dangdang.ddframe.job.internal.server.ServerService;
@@ -52,7 +53,9 @@ public class ExecutionService {
     private final ServerService serverService;
     
     private final LeaderElectionService leaderElectionService;
-    
+
+    private final LocalHostService localHostService = new LocalHostService();
+
     public ExecutionService(final CoordinatorRegistryCenter coordinatorRegistryCenter, final JobConfiguration jobConfiguration) {
         this.jobConfiguration = jobConfiguration;
         jobNodeStorage = new JobNodeStorage(coordinatorRegistryCenter, jobConfiguration);
@@ -71,6 +74,8 @@ public class ExecutionService {
             serverService.updateServerStatus(ServerStatus.RUNNING);
             for (int each : jobExecutionShardingContext.getShardingItems()) {
                 jobNodeStorage.fillEphemeralJobNode(ExecutionNode.getRunningNode(each), "");
+                jobNodeStorage.replaceJobNode(ExecutionNode.getIPNode(each), localHostService.getIp());
+                jobNodeStorage.replaceJobNode(ExecutionNode.getSystemEnvNode(each), localHostService.getSystemEnv("ENV_NAME"));
                 jobNodeStorage.replaceJobNode(ExecutionNode.getLastBeginTimeNode(each), System.currentTimeMillis());
                 JobScheduleController jobScheduleController = JobRegistry.getInstance().getJobScheduleController(jobConfiguration.getJobName());
                 if (null == jobScheduleController) {
