@@ -144,6 +144,15 @@ public class JobNodeStorage {
     public void fillEphemeralJobNode(final String node, final Object value) {
         coordinatorRegistryCenter.persistEphemeral(jobNodePath.getFullPath(node), value.toString());
     }
+
+    /**
+     * 填充临时节点数据.
+     *
+     * @param node 作业节点名称
+     */
+    public void fillEphemeralJobNode(final String node) {
+        coordinatorRegistryCenter.persistEphemeral(jobNodePath.getFullPath(node));
+    }
     
     /**
      * 更新节点数据.

@@ -49,7 +49,14 @@ public interface CoordinatorRegistryCenter extends RegistryCenter {
      * @param value 值
      */
     void persistEphemeral(String key, String value);
-    
+
+    /**
+     * 持久化临时注册数据.
+     *
+     * @param key 键
+     */
+    void persistEphemeral(String key);
+
     /**
      * 持久化顺序注册数据.
      *
