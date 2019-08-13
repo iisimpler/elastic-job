@@ -67,7 +67,11 @@ public abstract class AbstractJobConfiguration<T extends ElasticJob> implements 
     private final boolean disabled;
     
     private final boolean overwrite;
-    
+
+    private final int shardingOffset;
+
+    private final boolean alarm;
+
     @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
     @Getter(AccessLevel.PROTECTED)
     public abstract static class AbstractJobConfigurationBuilder<T extends AbstractJobConfiguration, J extends ElasticJob, B extends AbstractJobConfigurationBuilder> {
@@ -103,7 +107,11 @@ public abstract class AbstractJobConfiguration<T extends ElasticJob> implements 
         private boolean disabled;
     
         private boolean overwrite;
-        
+
+        private int shardingOffset = 0;
+
+        private boolean alarm = true;
+
         /**
          * 设置分片序列号和个性化参数对照表.
          *
@@ -281,6 +289,17 @@ public abstract class AbstractJobConfiguration<T extends ElasticJob> implements 
         @SuppressWarnings("unchecked")
         public B overwrite(final boolean overwrite) {
             this.overwrite = overwrite;
+            return (B) this;
+        }
+
+        @SuppressWarnings("unchecked")
+        public B shardingOffset(final int shardingOffset) {
+            this.shardingOffset = shardingOffset;
+            return (B) this;
+        }
+
+        public B alarm(final boolean alarm) {
+            this.alarm = alarm;
             return (B) this;
         }
         

@@ -67,7 +67,11 @@ public abstract class AbstractJobConfigurationDto<T extends JobConfiguration, J 
     private Boolean disabled;
     
     private Boolean overwrite;
-    
+
+    private Integer shardingOffset;
+
+    private Boolean alarm;
+
     protected B createBuilder() {
         B builder = createCustomizedBuilder();
         buildBaselProperties(builder);
@@ -97,6 +101,13 @@ public abstract class AbstractJobConfigurationDto<T extends JobConfiguration, J 
             builder.description(getDescription());
         }
         validateAndBuildJobStatus(builder);
+
+        if (null != getShardingOffset()) {
+            builder.shardingOffset(getShardingOffset());
+        }
+        if (null != getAlarm()) {
+            builder.alarm(getAlarm());
+        }
     }
     
     private void validateAndBuildJobStatus(final B builder) {

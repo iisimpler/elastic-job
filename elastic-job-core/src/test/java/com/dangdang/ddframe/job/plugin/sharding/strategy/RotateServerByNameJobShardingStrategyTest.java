@@ -41,7 +41,7 @@ public final class RotateServerByNameJobShardingStrategyTest {
         expected.put("host1", Collections.singletonList(0));
         expected.put("host2", Collections.singletonList(1));
         assertThat(
-                rotateServerByNameJobShardingStrategy.sharding(Arrays.asList("host0", "host1", "host2"), new JobShardingStrategyOption("1", 2, Collections.<Integer, String>emptyMap())), is(expected));
+                rotateServerByNameJobShardingStrategy.sharding(Arrays.asList("host0", "host1", "host2"), new JobShardingStrategyOption("1", 2, Collections.<Integer, String>emptyMap(),0)), is(expected));
     }
     
     @Test
@@ -51,7 +51,7 @@ public final class RotateServerByNameJobShardingStrategyTest {
         expected.put("host1", Collections.<Integer>emptyList());
         expected.put("host2", Collections.singletonList(0));
         assertThat(
-                rotateServerByNameJobShardingStrategy.sharding(Arrays.asList("host0", "host1", "host2"), new JobShardingStrategyOption("2", 2, Collections.<Integer, String>emptyMap())), is(expected));
+                rotateServerByNameJobShardingStrategy.sharding(Arrays.asList("host0", "host1", "host2"), new JobShardingStrategyOption("2", 2, Collections.<Integer, String>emptyMap(),0)), is(expected));
     }
     
     @Test
@@ -61,6 +61,6 @@ public final class RotateServerByNameJobShardingStrategyTest {
         expected.put("host1", Collections.singletonList(1));
         expected.put("host2", Collections.<Integer>emptyList());
         assertThat(
-                rotateServerByNameJobShardingStrategy.sharding(Arrays.asList("host0", "host1", "host2"), new JobShardingStrategyOption("3", 2, Collections.<Integer, String>emptyMap())), is(expected));
+                rotateServerByNameJobShardingStrategy.sharding(Arrays.asList("host0", "host1", "host2"), new JobShardingStrategyOption("3", 2, Collections.<Integer, String>emptyMap(),0)), is(expected));
     }
 }

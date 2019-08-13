@@ -117,6 +117,10 @@ public final class ExecutionNode {
         return jobNodePath.getFullPath(String.format(ROOT + "/%s", item));
     }
 
+    public String getNextFireTimePath(String item) {
+        return jobNodePath.getFullPath(String.format(NEXT_FIRE_TIME, item));
+    }
+
     public static String getIPNode(final int item){
         return String.format(ROOT + "/%s/ip", item);
     }

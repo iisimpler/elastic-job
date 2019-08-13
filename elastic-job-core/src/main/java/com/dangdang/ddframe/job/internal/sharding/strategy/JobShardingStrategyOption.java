@@ -28,4 +28,9 @@ public final class JobShardingStrategyOption {
      * 分片序列号和个性化参数对照表.
      */
     private final Map<Integer, String> shardingItemParameters;
+
+    /**
+     * 服务器列表偏移量
+     */
+    private final Integer offset;
 }

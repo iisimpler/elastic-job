@@ -43,10 +43,10 @@ public final class DataFlowJobConfiguration<T extends DataFlowElasticJob> extend
                                    final String shardingItemParameters, final String jobParameter, final boolean monitorExecution, final int maxTimeDiffSeconds,
                                    final boolean isFailover, final boolean isMisfire, final int monitorPort, final String jobShardingStrategyClass, final String description,
                                    final boolean disabled, final boolean overwrite, final int processCountIntervalSeconds, final int fetchDataCount, final int concurrentDataProcessThreadCount,
-                                   final boolean streamingProcess) {
+                                   final boolean streamingProcess, final int shardingOffset, final boolean alarm) {
         //CHECKSTYLE:ON
         super(jobName, JobType.DATA_FLOW, jobClass, shardingTotalCount, cron, shardingItemParameters, jobParameter, monitorExecution, maxTimeDiffSeconds, isFailover, isMisfire,
-                monitorPort, jobShardingStrategyClass, description, disabled, overwrite);
+                monitorPort, jobShardingStrategyClass, description, disabled, overwrite, shardingOffset, alarm);
         this.processCountIntervalSeconds = processCountIntervalSeconds;
         this.fetchDataCount = fetchDataCount;
         this.concurrentDataProcessThreadCount = concurrentDataProcessThreadCount;
@@ -139,7 +139,7 @@ public final class DataFlowJobConfiguration<T extends DataFlowElasticJob> extend
             Preconditions.checkArgument(concurrentDataProcessThreadCount > 0, String.format("%d should larger than zero.", concurrentDataProcessThreadCount));
             return new DataFlowJobConfiguration(getJobName(), getJobClass(), getShardingTotalCount(), getCron(), getShardingItemParameters(), getJobParameter(),
                     isMonitorExecution(), getMaxTimeDiffSeconds(), isFailover(), isMisfire(), getMonitorPort(), getJobShardingStrategyClass(),
-                    getDescription(), isDisabled(), isOverwrite(), processCountIntervalSeconds, fetchDataCount, concurrentDataProcessThreadCount, streamingProcess);
+                    getDescription(), isDisabled(), isOverwrite(), processCountIntervalSeconds, fetchDataCount, concurrentDataProcessThreadCount, streamingProcess, getShardingOffset(), isAlarm());
         }
     }
 }

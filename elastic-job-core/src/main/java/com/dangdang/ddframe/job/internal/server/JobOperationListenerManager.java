@@ -32,6 +32,8 @@ import com.dangdang.ddframe.job.internal.listener.AbstractJobListener;
 import com.dangdang.ddframe.job.internal.listener.AbstractListenerManager;
 import com.dangdang.ddframe.job.internal.schedule.JobRegistry;
 import com.dangdang.ddframe.reg.base.CoordinatorRegistryCenter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 作业控制监听管理器.
@@ -39,7 +41,8 @@ import com.dangdang.ddframe.reg.base.CoordinatorRegistryCenter;
  * @author zhangliang
  */
 public class JobOperationListenerManager extends AbstractListenerManager {
-    
+    protected static Logger logger = LoggerFactory.getLogger(JobOperationListenerManager.class);
+
     private final String jobName;
     
     private final ServerNode serverNode;
@@ -94,17 +97,28 @@ public class JobOperationListenerManager extends AbstractListenerManager {
         
         @Override
         protected void dataChanged(final CuratorFramework client, final TreeCacheEvent event, final String path) {
+
+            if (path.contains("trigger")){
+                logger.info(jobName + " : " + path + " : 收到触发事件");
+            }
+
             if (Type.NODE_ADDED != event.getType() || !serverNode.isLocalJobTriggerPath(path)) {
                 return;
             }
+            logger.info(jobName + " : " + path + " : 手动触发开始");
+
             serverService.clearJobTriggerStatus();
             JobScheduleController jobScheduleController = JobRegistry.getInstance().getJobScheduleController(jobName);
             if (null == jobScheduleController) {
+                logger.info(jobName + " : " + path + " : 手动触发找不到controller");
                 return;
             }
             if (serverService.isLocalhostServerReady()) {
+                logger.info(jobName + " : " + path + " : 手动触发中");
                 jobScheduleController.triggerJob();
             }
+
+            logger.info(jobName + " : " + path + " : 手动触发结束");
         }
     }
     

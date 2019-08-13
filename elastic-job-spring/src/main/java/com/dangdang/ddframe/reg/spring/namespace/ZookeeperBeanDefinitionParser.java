@@ -21,6 +21,8 @@ import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser;
 import org.w3c.dom.Element;
 
+import java.util.Random;
+
 /**
  * 基于Zookeeper注册中心的命名空间解析器.
  * 
@@ -54,5 +56,23 @@ class ZookeeperBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
         result.setLocalPropertiesPath(element.getAttribute("local-properties-path"));
         result.setOverwrite(element.getAttribute("overwrite"));
         return result;
+    }
+
+    public static void main(String[] args) {
+        Random random = new Random();
+        long baseSleepTimeMs = 1000;
+        long maxSleepMs = 6000;
+        int retryCount = 0;
+
+        while (retryCount < 10){
+            long sleepMs = (long)(baseSleepTimeMs * Math.max(1, random.nextInt(1 << retryCount + 1)));
+            if(sleepMs > (long)maxSleepMs) {
+                sleepMs = (long)maxSleepMs;
+            }
+
+            System.out.println(sleepMs);
+            retryCount++;
+        }
+
     }
 }

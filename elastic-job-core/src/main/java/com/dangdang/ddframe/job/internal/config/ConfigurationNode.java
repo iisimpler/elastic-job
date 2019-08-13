@@ -66,6 +66,10 @@ public final class ConfigurationNode {
 
     static final String DISABLED = ROOT + "/disabled";
 
+    static final String SHARDING_OFFSET = ROOT + "/shardingOffset";
+
+    static final String ALARM = ROOT + "/alarm";
+
     private final JobNodePath jobNodePath;
     
     public ConfigurationNode(final String jobName) {

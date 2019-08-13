@@ -21,6 +21,8 @@ import com.dangdang.ddframe.job.api.JobExecutionMultipleShardingContext;
 import com.dangdang.ddframe.job.internal.job.AbstractElasticJob;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 /**
  * 简单的分布式作业.
  * 
@@ -45,4 +47,14 @@ public abstract class AbstractSimpleElasticJob extends AbstractElasticJob {
      * @param shardingContext 作业分片规则配置上下文
      */
     public abstract void process(final JobExecutionMultipleShardingContext shardingContext);
+
+    public Boolean canProcess(Integer shardValue, JobExecutionMultipleShardingContext jobExecutionMultipleShardingContext) {
+        List<Integer> shardItemList = jobExecutionMultipleShardingContext.getShardingItems();
+        Integer totalCount = jobExecutionMultipleShardingContext.getShardingTotalCount();
+        if (shardItemList.contains(shardValue%totalCount)){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

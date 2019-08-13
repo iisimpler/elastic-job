@@ -37,9 +37,9 @@ public final class ScriptJobConfiguration extends AbstractJobConfiguration<Scrip
     private ScriptJobConfiguration(final String jobName, final int shardingTotalCount, final String cron,
                                      final String shardingItemParameters, final String jobParameter, final boolean monitorExecution, final Integer maxTimeDiffSeconds,
                                      final Boolean isFailover, final Boolean isMisfire, final Integer monitorPort, final String jobShardingStrategyClass, final String description,
-                                     final Boolean disabled, final Boolean overwrite, final String scriptCommandLine) {
+                                     final Boolean disabled, final Boolean overwrite, final String scriptCommandLine, final int shardingOffset, final boolean alarm) {
         super(jobName, JobType.SCRIPT, ScriptElasticJob.class, shardingTotalCount, cron, shardingItemParameters, jobParameter, monitorExecution, maxTimeDiffSeconds, isFailover, isMisfire,
-                monitorPort, jobShardingStrategyClass, description, disabled, overwrite);
+                monitorPort, jobShardingStrategyClass, description, disabled, overwrite, shardingOffset, alarm);
         this.scriptCommandLine = scriptCommandLine;
     }
     //CHECKSTYLE:ON
@@ -70,7 +70,7 @@ public final class ScriptJobConfiguration extends AbstractJobConfiguration<Scrip
             Preconditions.checkArgument(!Strings.isNullOrEmpty(scriptCommandLine), "script command line can not be empty.");
             return new ScriptJobConfiguration(getJobName(), getShardingTotalCount(), getCron(), getShardingItemParameters(), getJobParameter(),
                     isMonitorExecution(), getMaxTimeDiffSeconds(), isFailover(), isMisfire(), getMonitorPort(), getJobShardingStrategyClass(),
-                    getDescription(), isDisabled(), isOverwrite(), scriptCommandLine);
+                    getDescription(), isDisabled(), isOverwrite(), scriptCommandLine, getShardingOffset(), isAlarm());
         }
     }
 }

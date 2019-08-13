@@ -87,6 +87,8 @@ public class ConfigurationService {
         jobNodeStorage.fillJobNodeIfNullOrOverwrite(ConfigurationNode.JOB_SHARDING_STRATEGY_CLASS, jobNodeStorage.getJobConfiguration().getJobShardingStrategyClass());
         jobNodeStorage.fillJobNodeIfNullOrOverwrite(ConfigurationNode.DESCRIPTION, jobNodeStorage.getJobConfiguration().getDescription());
         jobNodeStorage.fillJobNodeIfNullOrOverwrite(ConfigurationNode.MONITOR_PORT, jobNodeStorage.getJobConfiguration().getMonitorPort());
+        jobNodeStorage.fillJobNodeIfNullOrOverwrite(ConfigurationNode.SHARDING_OFFSET, jobNodeStorage.getJobConfiguration().getShardingOffset());
+        jobNodeStorage.fillJobNodeIfNullOrOverwrite(ConfigurationNode.ALARM, jobNodeStorage.getJobConfiguration().isAlarm());
     }
     
     private void fillDataFlowJobInfo() {
@@ -285,4 +287,9 @@ public class ConfigurationService {
     public String getScriptCommandLine() {
         return jobNodeStorage.getJobNodeData(ConfigurationNode.SCRIPT_COMMAND_LINE);
     }
+
+    public int getShardingOffset() {
+        return Integer.valueOf(jobNodeStorage.getJobNodeData(ConfigurationNode.SHARDING_OFFSET));
+    }
+
 }

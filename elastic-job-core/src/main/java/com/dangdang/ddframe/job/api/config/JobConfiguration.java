@@ -176,4 +176,8 @@ public interface JobConfiguration<T extends ElasticJob> {
      * @return 本地配置是否可覆盖注册中心配置
      */
     boolean isOverwrite();
+
+    int getShardingOffset();
+
+    boolean isAlarm();
 }

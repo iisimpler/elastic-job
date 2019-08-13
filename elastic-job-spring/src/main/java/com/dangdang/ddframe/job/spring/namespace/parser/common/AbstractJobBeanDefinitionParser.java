@@ -33,24 +33,7 @@ import org.w3c.dom.Element;
 
 import java.util.List;
 
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.COMPLETED_TIMEOUT_MILLISECONDS_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.CRON_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.CLASS_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.DESCRIPTION_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.DISABLED_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.FAILOVER_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.JOB_PARAMETER_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.JOB_SHARDING_STRATEGY_CLASS_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.LISTENER_TAG;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.MAX_TIME_DIFF_SECONDS_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.MISFIRE_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.MONITOR_EXECUTION_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.MONITOR_PORT_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.OVERWRITE_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.REGISTRY_CENTER_REF_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.SHARDING_ITEM_PARAMETERS_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.SHARDING_TOTAL_COUNT_ATTRIBUTE;
-import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.STARTED_TIMEOUT_MILLISECONDS_ATTRIBUTE;
+import static com.dangdang.ddframe.job.spring.namespace.constants.BaseJobBeanDefinitionParserTag.*;
 import static com.dangdang.ddframe.job.spring.namespace.constants.ScriptJobBeanDefinitionParserTag.SCRIPT_COMMAND_LINE_ATTRIBUTE;
 
 /**
@@ -93,6 +76,10 @@ public abstract class AbstractJobBeanDefinitionParser extends AbstractBeanDefini
         addPropertyValueIfNotEmpty(DESCRIPTION_ATTRIBUTE, "description", element, factory);
         addPropertyValueIfNotEmpty(DISABLED_ATTRIBUTE, "disabled", element, factory);
         addPropertyValueIfNotEmpty(OVERWRITE_ATTRIBUTE, "overwrite", element, factory);
+
+        addPropertyValueIfNotEmpty(SHARDING_OFFSET_ATTRIBUTE, "shardingOffset", element, factory);
+        addPropertyValueIfNotEmpty(ALARM_ATTRIBUTE, "alarm", element, factory);
+
         setPropertiesValue(element, factory);
         String result = element.getAttribute(ID_ATTRIBUTE) + "Conf";
         parserContext.getRegistry().registerBeanDefinition(result, factory.getBeanDefinition());

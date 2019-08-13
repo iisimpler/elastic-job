@@ -32,9 +32,9 @@ public final class SimpleJobConfiguration<T extends AbstractSimpleElasticJob> ex
     private SimpleJobConfiguration(final String jobName, final Class<? extends T> jobClass, final int shardingTotalCount, final String cron, 
                                  final String shardingItemParameters, final String jobParameter, final boolean monitorExecution, final int maxTimeDiffSeconds,
                                  final boolean isFailover, final boolean isMisfire, final int monitorPort, final String jobShardingStrategyClass, final String description,
-                                 final boolean disabled, final boolean overwrite) {
+                                 final boolean disabled, final boolean overwrite, final int shardingOffset, final boolean alarm) {
         super(jobName, JobType.SIMPLE, jobClass, shardingTotalCount, cron, shardingItemParameters, jobParameter, monitorExecution, maxTimeDiffSeconds, isFailover, isMisfire, 
-                monitorPort, jobShardingStrategyClass, description, disabled, overwrite);
+                monitorPort, jobShardingStrategyClass, description, disabled, overwrite, shardingOffset, alarm);
     }
     //CHECKSTYLE:ON
     
@@ -49,7 +49,7 @@ public final class SimpleJobConfiguration<T extends AbstractSimpleElasticJob> ex
         protected SimpleJobConfiguration buildInternal() {
             return new SimpleJobConfiguration(getJobName(), getJobClass(), getShardingTotalCount(), getCron(), getShardingItemParameters(), getJobParameter(),
                 isMonitorExecution(), getMaxTimeDiffSeconds(), isFailover(), isMisfire(), getMonitorPort(), getJobShardingStrategyClass(),
-                getDescription(), isDisabled(), isOverwrite());
+                getDescription(), isDisabled(), isOverwrite(), getShardingOffset(), isAlarm());
         }
     }
 }

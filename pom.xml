@@ -25,7 +25,7 @@
         <guava.version>18.0</guava.version>
         <commons-beanutils.version>1.9.2</commons-beanutils.version>
         <quartz.version>2.2.1</quartz.version>
-        <curator.version>2.10.0</curator.version>
+        <curator.version>2.12.0</curator.version>
         <springframework.version>4.1.1.RELEASE</springframework.version>
         <aspectj.version>1.8.0</aspectj.version>
         <slf4j.version>1.7.7</slf4j.version>
@@ -603,15 +603,17 @@
             <timezone>8</timezone>
         </developer>
     </developers>
-    
+
     <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
         <repository>
-            <id>sonatype-nexus-releases</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+            <id>jmb-release</id>
+            <name>jimubox release repository</name>
+            <url>http://maven.jimubox.com/nexus/content/repositories/releases/</url>
         </repository>
+        <snapshotRepository>
+            <id>jmb-snapshot</id>
+            <name>jimubox snapshot repository</name>
+            <url>http://maven.jimubox.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
     </distributionManagement>
 </project>

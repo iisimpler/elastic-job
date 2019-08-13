@@ -64,4 +64,8 @@ public class BaseJobBeanDefinitionParserTag {
     public static final String STARTED_TIMEOUT_MILLISECONDS_ATTRIBUTE = "started-timeout-milliseconds";
     
     public static final String COMPLETED_TIMEOUT_MILLISECONDS_ATTRIBUTE = "completed-timeout-milliseconds";
+
+    public static final String SHARDING_OFFSET_ATTRIBUTE = "sharding-offset";
+
+    public static final String ALARM_ATTRIBUTE = "alarm";
 }

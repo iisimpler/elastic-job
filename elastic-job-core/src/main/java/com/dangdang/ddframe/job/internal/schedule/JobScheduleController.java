@@ -27,6 +27,8 @@ import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 import java.util.List;
@@ -38,7 +40,8 @@ import java.util.List;
  */
 @RequiredArgsConstructor
 public class JobScheduleController {
-    
+    protected static Logger logger = LoggerFactory.getLogger(JobScheduleController.class);
+
     private final Scheduler scheduler;
     
     private final JobDetail jobDetail;
@@ -149,9 +152,14 @@ public class JobScheduleController {
     public void triggerJob() {
         try {
             if (!scheduler.isShutdown()) {
+                logger.info(jobDetail.getKey() + " : 开始");
                 scheduler.triggerJob(jobDetail.getKey());
+                logger.info(jobDetail.getKey() + " : 结束");
+            } else {
+                logger.error(jobDetail.getKey() + " : 已关闭");
             }
         } catch (final SchedulerException ex) {
+            logger.error(jobDetail.getKey() + " : " +ex.getMessage(), ex);
             throw new JobException(ex);
         }
     }

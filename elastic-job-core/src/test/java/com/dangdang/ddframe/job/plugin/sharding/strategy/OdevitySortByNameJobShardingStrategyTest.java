@@ -41,7 +41,7 @@ public final class OdevitySortByNameJobShardingStrategyTest {
         expected.put("host1", Collections.singletonList(1));
         expected.put("host2", Collections.<Integer>emptyList());
         assertThat(
-                odevitySortByNameJobShardingStrategy.sharding(Arrays.asList("host0", "host1", "host2"), new JobShardingStrategyOption("1", 2, Collections.<Integer, String>emptyMap())), is(expected));
+                odevitySortByNameJobShardingStrategy.sharding(Arrays.asList("host0", "host1", "host2"), new JobShardingStrategyOption("1", 2, Collections.<Integer, String>emptyMap(),0)), is(expected));
     }
     
     @Test
@@ -51,6 +51,6 @@ public final class OdevitySortByNameJobShardingStrategyTest {
         expected.put("host1", Collections.singletonList(1));
         expected.put("host0", Collections.<Integer>emptyList());
         assertThat(
-                odevitySortByNameJobShardingStrategy.sharding(Arrays.asList("host0", "host1", "host2"), new JobShardingStrategyOption("0", 2, Collections.<Integer, String>emptyMap())), is(expected));
+                odevitySortByNameJobShardingStrategy.sharding(Arrays.asList("host0", "host1", "host2"), new JobShardingStrategyOption("0", 2, Collections.<Integer, String>emptyMap(),0)), is(expected));
     }
 }
