@@ -3,17 +3,17 @@
     <parent>
         <groupId>com.dangdang</groupId>
         <artifactId>elastic-job</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.6-SNAPSHOT</version>
     </parent>
     <artifactId>jimu-elastic-job-spring</artifactId>
     <name>${project.artifactId}</name>
-    <version>1.1.5-SNAPSHOT</version>
+    <version>1.1.6-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>com.dangdang</groupId>
             <artifactId>jimu-elastic-job-core</artifactId>
-            <version>1.1.5-SNAPSHOT</version>
+            <version>1.1.6-SNAPSHOT</version>
         </dependency>
         
         <dependency>
